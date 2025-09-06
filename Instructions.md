@@ -118,8 +118,6 @@
 * Forum Moodle du cours
 * Discord du cours
 
-**Note** : Codespaces offre 60 heures gratuites par mois pour les étudiants
-
 ---
 
 Bon courage pour le TP2 ! 🚀
