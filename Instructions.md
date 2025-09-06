@@ -1,33 +1,14 @@
-# Instructions pour le TP2 - Automne 2024
+# Instructions pour le TP2 - Automne 2025
 
 ## Information générale
 * En cas de difficultés, il est toujours possible de modifier des fichiers [directement sur GitHub](https://docs.github.com/en/github/managing-files-in-a-repository/editing-files-in-your-repository)
-* Pour toute question, consultez d'abord le forum Moodle du cours
-
-## Étapes avant le TP
-
-### Installation unique (à faire une seule fois)
-1. **Installer Python 3.10 ou plus récent**
-   * [Télécharger Python](https://www.python.org/downloads/)
-   * Vérifier l'installation : `python --version` dans le terminal
-
-2. **Installer un IDE Python**
-   * Option recommandée : [PyCharm Community](https://www.jetbrains.com/pycharm/download/)
-   * Alternative : [Visual Studio Code](https://code.visualstudio.com/) avec l'extension Python
-   
-3. **Installer Git et GitHub Desktop**
-   * [GitHub Desktop](https://desktop.github.com/) (recommandé pour débutants)
-   * Ou [Git](https://git-scm.com/) en ligne de commande
-
-4. **Apprendre les bases de Git**
-   * [Guide GitHub en français](https://docs.github.com/fr/get-started)
-   * [Tutoriel interactif Git](https://learngitbranching.js.org/?locale=fr_FR)
+* Pour toute question, consultez d'abord les forums Moodle/Discord du cours
 
 ### Préparation pour le TP2
 
 1. **Cloner le repository**
    ```bash
-   git clone https://github.com/[votre-username]/TP2-automne2024.git
+   git clone https://github.com/INF1007-Gabarits/2025A-TP2.git
    ```
    Ou via GitHub Desktop : File → Clone Repository
 
@@ -135,17 +116,7 @@
 
 ### Aide supplémentaire
 * Forum Moodle du cours
-* Heures de bureau des chargés de TP
-* Discord du cours (si disponible)
-
-## Alternative : Utilisation de Codespaces (GitHub)
-
-Si vous ne pouvez pas installer Python localement, utilisez GitHub Codespaces :
-
-1. Sur la page du repository GitHub
-2. Cliquer sur "Code" → "Codespaces" → "Create codespace on main"
-3. Un environnement de développement s'ouvre dans votre navigateur
-4. Tous les outils sont pré-installés et configurés
+* Discord du cours
 
 **Note** : Codespaces offre 60 heures gratuites par mois pour les étudiants
 
