@@ -1,6 +1,6 @@
 # TP2: Simulateur de Restaurant "Python Bistro" 🍳
 
-#### :alarm_clock: Date de remise : Dimanche 20 octobre 2024 à 23h59
+#### :alarm_clock: Date de remise : Dimanche 19 octobre 2025 à 23h59
 
 ## Objectif
 Ce TP vous permettra d'apprendre la programmation Python à travers la création d'un simulateur de gestion de restaurant. Vous allez découvrir et maîtriser :
