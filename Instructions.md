@@ -94,7 +94,7 @@
    * NE PAS inclure les dossiers __pycache__ ou .git
 
 3. **Soumettre sur Moodle**
-   * Date limite : **Dimanche 20 octobre 2024 à 23h59**
+   * Date limite : **Dimanche 19 octobre 2025 à 23h59**
    * Pénalité de retard : -10% par jour
 
 ### Critères d'évaluation
