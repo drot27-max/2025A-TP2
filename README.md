@@ -112,13 +112,46 @@ Créez un mini-jeu en mode console où le serveur doit :
 - Testez votre code avec les exemples fournis
 - Respectez les formats de sortie demandés
 
-## Barème
-- Exercice 1: 3 points
-- Exercice 2: 3 points  
-- Exercice 3: 4 points
-- Exercice 4: 5 points
-- Exercice 5: 5 points
-- Bonus: +2 points
-- **Total: 20 points (+2 bonus)**
+# Barème de correction
+
+Le barème de correction est le suivant :  
+
+| Partie | Tâche | Points |
+|--------|-------|--------|
+| **Exercice 1 : Gestion du menu** | | **/3** |
+| 1.1 | Calcul correct du plat le plus rentable (ratio popularité/temps, gérer temps = 0) (`analyser_menu`) | 1.0 |
+| 1.2 | Calcul du prix moyen du menu (`analyser_menu`) | 0.5 |
+| 1.3 | Calcul du temps de préparation moyen (`analyser_menu`) | 0.5 |
+| 1.4 | Filtrage du menu par catégorie (`filtrer_menu_par_categorie`) — structure correcte | 0.5 |
+| 1.5 | Calcul du profit journalier correct (`calculer_profit`) | 0.5 |
+| **Exercice 2 : File d'attente des commandes** | | **/4** |
+| 2.1 | Calcul correct du score de priorité (`calculer_priorite`) | 1.0 |
+| 2.2 | Tri par priorité décroissante (algorithme fonctionnel, stabilité appréciée) (`trier_commandes`) | 1.0 |
+| 2.3 | Estimation du temps total et temps moyen (3 min / item) (`estimer_temps_total`) | 0.75 |
+| 2.4 | Identification correcte des commandes urgentes (seuil) (`identifier_commandes_urgentes`) | 0.75 |
+| 2.5 | Implémentation robuste du tri (gestion des copies, pas d'effets de bord) | 0.5 |
+| **Exercice 3 : Optimisation de l'inventaire** | | **/4** |
+| 3.1 | Vérification correcte de la disponibilité d'une recette (`verifier_disponibilite`) | 1.0 |
+| 3.2 | Mise à jour de l'inventaire après préparation (multiplie par `quantite`) (`mettre_a_jour_inventaire`) | 1.0 |
+| 3.3 | Génération d'alertes de stock (< seuil) et suggestion de quantité à commander (`generer_alertes_stock`) | 0.75 |
+| 3.4 | Calcul du nombre de portions possibles par plat (ingrédient limitant) (`calculer_commandes_possibles`) | 0.75 |
+| 3.5 | Optimisation des achats selon prévisions et budget (priorisation raisonnable) (`optimiser_achats`) | 0.5 |
+| **Exercice 4 : Système de réservation** | | **/4** |
+| 4.1 | Initialisation correcte de la salle (grille `X` + placement des tables) (`initialiser_salle`) | 1.0 |
+| 4.2 | Marquage des réservations (R2/R4) sans altérer les autres cases (`marquer_reservation`) | 0.5 |
+| 4.3 | Calcul du score de table conforme aux règles (gaspillage, fenêtre, entrée) (`calculer_score_table`) | 0.75 |
+| 4.4 | Recherche de la meilleure table libre (parcours + comparaison de score) (`trouver_meilleure_table`) | 0.75 |
+| 4.5 | Rapport d'occupation correct (comptages et taux d'occupation) (`generer_rapport_occupation`) | 1.0 |
+| **Exercice 5 : Analyse de la satisfaction client** | | **/5** |
+| 5.1 | Analyse d'un commentaire : détection mots-clés, somme des scores, borne 0–10 (`analyser_commentaire`) | 1.0 |
+| 5.2 | Catégorisation correcte des commentaires (positifs ≥7, neutres 4–6, négatifs <4) (`categoriser_commentaires`) | 1.0 |
+| 5.3 | Identification des problèmes récurrents dans les commentaires négatifs (`identifier_problemes`) | 1.0 |
+| 5.4 | Génération de rapport : satisfaction moyenne + distribution + points d'amélioration (`generer_rapport_satisfaction`) | 1.0 |
+| 5.5 | Détection correcte de la tendance à partir d'un historique (`calculer_tendance`) | 1.0 |
+| **BONUS (optionnel)** | | **/2** |
+| B.1 | Mini-jeu : initialisation correcte de la grille et position cuisine (`initialiser_restaurant`) | 0.5 |
+| B.2 | Déplacement serveur valide et borné (`deplacer_serveur`) | 0.5 |
+| B.3 | Prendre/livrer commandes fonctionnel (points associés) (`prendre_commande`, `livrer_commande`) | 1.0 |
+| **Total** |  | **/20 (+ /2 bonus)** |
 
 Bonne chance et bon appétit ! 🍽️
