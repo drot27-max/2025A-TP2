@@ -1,7 +1,5 @@
 """
 TP2 - BONUS : Mini-jeu de service au restaurant
-Nom: 
-Matricule:
 """
 
 import random
