@@ -1,7 +1,5 @@
 """
 TP2 - Exercice 1 : Gestion du Menu
-Nom: 
-Matricule:
 """
 
 def analyser_menu(menu):
