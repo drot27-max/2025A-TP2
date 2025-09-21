@@ -41,7 +41,8 @@ menu = {
 ```
 
 **Ressources :**
-[Python Dictionnary Methods](https://www.w3schools.com/python/python_ref_dictionary.asp)
+- [Python Dictionnary Methods](https://www.w3schools.com/python/python_ref_dictionary.asp)
+- [Python List/Array Methods](https://www.w3schools.com/python/python_ref_list.asp)
 
 ## Exercice 2: File d'attente des commandes (3 points)
 Les commandes arrivent dans votre cuisine et doivent être traitées selon un algorithme de priorité. Implémentez un système de file d'attente qui trie les commandes selon leur urgence.
