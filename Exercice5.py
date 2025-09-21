@@ -1,7 +1,5 @@
 """
 TP2 - Exercice 5 : Analyse de la satisfaction client
-Nom: 
-Matricule:
 """
 
 def analyser_commentaire(commentaire, mots_cles):
