@@ -1,6 +1,6 @@
 # TP2: Simulateur de Restaurant "Python Bistro" 🍳
 
-#### :alarm_clock: Date de remise : Dimanche 19 octobre 2025 à 23h59
+#### ⏰ Date de remise : Dimanche 19 octobre 2025 à 23h59
 
 ## Objectif
 Ce TP vous permettra d'apprendre la programmation Python à travers la création d'un simulateur de gestion de restaurant. Vous allez découvrir et maîtriser :
@@ -18,99 +18,171 @@ Félicitations ! Vous venez d'hériter du restaurant familial "Python Bistro". P
 - Gérer la satisfaction client
 
 ## Structure du TP
-Le TP est divisé en 5 exercices indépendants qui simulent différents aspects de la gestion du restaurant.
+Le TP est divisé en 5 exercices indépendants (+ un bonus optionnel) qui simulent différents aspects de la gestion du restaurant. Chaque exercice contient plusieurs fonctions marquées `# TODO` : **ne modifiez que ces sections**.
+
+---
 
 ## Exercice 1: Gestion du Menu (3 points)
-Vous devez créer un système pour gérer le menu du restaurant. Le menu est représenté par un dictionnaire où les clés sont les noms des plats et les valeurs sont des tuples contenant (prix, temps_preparation, popularité).
+Vous devez compléter les fonctions liées au menu. Le menu est représenté par un dictionnaire où les clés sont les noms des plats et les valeurs sont des tuples `(prix, temps_preparation, popularité)`.
 
-Complétez la fonction `analyser_menu` qui :
-- Trouve le plat le plus rentable (rapport popularité/temps_preparation le plus élevé)
-- Calcule le prix moyen du menu
-- Retourne un dictionnaire avec ces statistiques
+Fonctions à compléter (`TODO`) :
+- `analyser_menu(menu)`  
+  - Trouver le plat le plus rentable (rapport `popularité / temps_preparation`, gérer `temps_preparation == 0`).
+  - Calculer le prix moyen du menu.
+  - Calculer le temps de préparation moyen.
+  - Retourner un dictionnaire de statistiques (`'plat_plus_rentable'`, `'prix_moyen'`, `'temps_moyen'`).
+
+- `filtrer_menu_par_categorie(menu, categories)`  
+  - Organiser le menu par catégories (ex. `{'entrées': [...], 'plats': [...], 'desserts': [...]}`).
+  - Gérer le cas où des plats n'ont pas de catégorie.
+
+- `calculer_profit(menu, ventes_jour)`  
+  - Calculer le profit total pour la journée : somme de `prix_plat * nombre_ventes` pour chaque plat vendu.
+  - Gérer les plats absents du menu (ignorer/avertir).
 
 **Exemple :**
 ```python
 menu = {
-    'Pizza Margherita': (12.50, 15, 8),  # (prix, temps en min, popularité sur 10)
+    'Pizza Margherita': (12.50, 15, 8),
     'Pâtes Carbonara': (14.00, 12, 9),
     'Salade César': (9.50, 5, 6),
     'Tiramisu': (6.00, 3, 10)
 }
-# Résultat attendu:
-# {'plat_plus_rentable': 'Tiramisu', 'prix_moyen': 10.50}
 ```
 
-## Exercice 2: File d'attente des commandes (3 points)
-Les commandes arrivent dans votre cuisine et doivent être traitées selon un algorithme de priorité. Implémentez un système de file d'attente qui trie les commandes selon leur urgence.
+---
 
-**L'algorithme de priorité :**
-- Score = (temps_attente × 2) + (nombre_items × 1) + (client_vip × 10)
-- Les commandes avec le score le plus élevé sont traitées en premier
+## Exercice 2: File d'attente des commandes (4 points)
+Les commandes arrivent en cuisine et doivent être priorisées. Implémentez les fonctions listées ci-dessous.
 
-Complétez la fonction `trier_commandes` qui implémente cet algorithme de tri.
+Fonctions à compléter (`TODO`) :
+- `calculer_priorite(commande)`  
+  - Implémenter la formule : `Score = (temps_attente × 2) + (nombre_items × 1) + (client_vip × 10)` (le booléen `client_vip` vaut 1 si True, 0 sinon).
+
+- `trier_commandes(liste_commandes)`  
+  - Trier les commandes par priorité décroissante (commandes avec score le plus élevé en premier).
+  - Implémenter un algorithme de tri (ex. tri à bulles, insertion, etc.) sans utiliser `sorted()` si demandé/volontairement pédagogique.
+  - Veiller à ne pas modifier la liste originale si cela doit être explicitement évité (faire une copie si nécessaire).
+
+- `estimer_temps_total(liste_commandes_triee)`  
+  - Calculer le temps total et le temps moyen pour traiter les commandes.
+  - Hypothèse : **chaque item prend en moyenne 3 minutes**.
+
+- `identifier_commandes_urgentes(liste_commandes, seuil_attente=30)`  
+  - Retourner la liste des numéros de commandes dont `temps_attente > seuil_attente`.
+
+---
 
 ## Exercice 3: Optimisation de l'inventaire (4 points)
-Vous devez gérer l'inventaire des ingrédients. Créez un système qui :
-1. Vérifie si vous avez assez d'ingrédients pour une commande
-2. Met à jour l'inventaire après chaque commande
-3. Génère des alertes pour les ingrédients en rupture de stock (< 10 unités)
+Gérer l'inventaire et préparer des recettes sans ruptures.
 
-**Format des données :**
-```python
-inventaire = {'tomates': 50, 'fromage': 30, 'pâtes': 100}
-recette = {'tomates': 5, 'fromage': 3}  # Ingrédients nécessaires
-```
+Fonctions à compléter (`TODO`) :
+- `verifier_disponibilite(inventaire, recette)`  
+  - Vérifier, ingrédient par ingrédient, si l'inventaire suffit pour la recette.
+  - Retourner `(peut_preparer: bool, ingredients_manquants: list)`.
 
-## Exercice 4: Système de réservation (5 points)
-Créez un système de réservation de tables pour votre restaurant avec les fonctionnalités suivantes :
+- `mettre_a_jour_inventaire(inventaire, recette, quantite=1)`  
+  - Soustraire les quantités utilisées selon `recette`, multipliées par `quantite`.
+  - Retourner le nouvel inventaire (copie, ne pas modifier l'original si nécessaire).
 
-### Partie 1: Initialisation (2 points)
-Créez une grille représentant la salle du restaurant où :
-- `O` = table occupée
-- `L` = table libre  
-- `R` = table réservée
-- `X` = espace non disponible (couloir, cuisine)
+- `generer_alertes_stock(inventaire, seuil=10)`  
+  - Identifier les ingrédients avec stock < `seuil`.
+  - Suggérer une quantité à commander (ex. commander jusqu'à 50 unités : `a_commander = max(0, 50 - stock_actuel)`).
+  - Retourner un dict `{ingredient: (quantité_actuelle, quantité_à_commander)}`.
 
-### Partie 2: Recherche de table (3 points)
-Implémentez un algorithme qui trouve la meilleure table disponible selon :
-- La taille du groupe (petites tables pour 2, grandes pour 4+)
-- La position (près de la fenêtre = bonus)
-- L'état de disponibilité
+- `calculer_commandes_possibles(inventaire, menu_recettes)`  
+  - Pour chaque plat, calculer combien de portions peuvent être préparées avec l'inventaire actuel.
+  - Le nombre possible est le minimum des `inventaire[ingredient] // besoin_par_portion`.
+
+- `optimiser_achats(inventaire, menu_recettes, previsions_ventes, budget)`  
+  - Calculer les besoins totaux selon les prévisions (`previsions_ventes`).
+  - Soustraire l'inventaire actuel pour obtenir les besoins d'achat.
+  - Optimiser selon le budget (prioriser ingrédients critiques, respecter le budget en coût unitaire donné).
+  - Retourner `{ingredient: quantite_a_acheter}`.
+
+---
+
+## Exercice 4: Système de réservation (4 points)
+Créer et gérer la salle, réserver des tables et produire des rapports.
+
+Fonctions à compléter (`TODO`) :
+
+### Partie 1 : Initialisation (2 points)
+- `initialiser_salle(nb_rangees, nb_colonnes, positions_tables)`  
+  - Créer une grille remplie de `'X'` (espace non disponible).
+  - Placer les tables aux positions indiquées en utilisant `'L2'` ou `'L4'` pour tables libres.
+
+- `marquer_reservation(salle, position, taille_groupe)`  
+  - Marquer la table comme réservée : `'R2'` ou `'R4'` selon la table.
+  - Faire une copie sûre de la grille si nécessaire.
+
+### Partie 2 : Recherche de table (3 points)
+- `calculer_score_table(position, taille_table, taille_groupe, nb_colonnes)`  
+  - Retourner `-1` si la table ne convient pas (`taille_table < taille_groupe`).
+  - Base : 100 points.
+  - Pénalité : `-10` points par place vide (gaspillage).
+  - Bonus fenêtre : `+20` si `colonne == 0` ou `colonne == nb_colonnes - 1`.
+  - Bonus position : `+5` si `rangée < 3` (près de l'entrée).
+
+- `trouver_meilleure_table(salle, taille_groupe)`  
+  - Parcourir les tables libres (`'L2'` / `'L4'`) et retourner la meilleure `(position, taille_table)`.
+
+- `generer_rapport_occupation(salle)`  
+  - Compter tables libres, réservées et occupées par capacité (2 et 4).
+  - Calculer le taux d'occupation (`(réservées + occupées) / total_tables`).
+
+---
 
 ## Exercice 5: Analyse de la satisfaction client (5 points)
-Analysez les commentaires clients pour améliorer votre service. 
+Analyser les commentaires clients et produire un rapport.
 
-Créez un système qui :
-1. Analyse les mots-clés dans les commentaires
-2. Calcule un score de satisfaction (0-10)
-3. Identifie les points à améliorer
-4. Génère un rapport de synthèse
+Fonctions à compléter (`TODO`) :
+- `analyser_commentaire(commentaire, mots_cles)`  
+  - Convertir le commentaire en minuscules.
+  - Rechercher chaque mot-clé et additionner les scores.
+  - Produire la liste `mots_trouves`.
+  - Borer le score final entre `0` et `10`.
 
-**Mots-clés et scores :**
-- Positifs : "excellent"(+3), "délicieux"(+2), "rapide"(+1)
-- Négatifs : "froid"(-2), "lent"(-3), "décevant"(-2)
+- `categoriser_commentaires(liste_commentaires, mots_cles)`  
+  - Analyser chaque commentaire et le classer :
+    - `'positifs'` : score >= 7
+    - `'neutres'` : 4 ≤ score ≤ 6
+    - `'negatifs'` : score < 4
+  - Stocker tuples `(texte_commentaire, score)` dans chaque catégorie.
+
+- `identifier_problemes(commentaires_negatifs, mots_cles_negatifs)`  
+  - Compter la fréquence d'apparition de mots-clés négatifs dans les commentaires négatifs.
+  - Retourner un dict trié par fréquence décroissante.
+
+- `generer_rapport_satisfaction(categories, frequence_problemes)`  
+  - Calculer la satisfaction moyenne.
+  - Calculer la distribution en pourcentages (positifs / neutres / négatifs).
+  - Identifier les 3 principaux points d'amélioration (mots-clés négatifs les plus fréquents).
+  - Générer des recommandations basées sur ces problèmes.
+
+- `calculer_tendance(historique_scores)`  
+  - Déterminer `'amélioration'`, `'stable'` ou `'dégradation'` selon l'évolution des scores moyens sur les périodes.
+
+---
 
 ## Bonus: Mini-jeu de service (2 points)
-Créez un mini-jeu en mode console où le serveur doit :
-- Se déplacer dans le restaurant (grille 5x5)
-- Prendre les commandes aux tables
-- Les apporter à la cuisine
-- Servir les plats
-- Le tout avec un système de score basé sur la rapidité
+Créer un mini-jeu console (optionnel) : fonctions `TODO` à compléter :
+- `initialiser_restaurant()` : créer la grille 5x5, placer la cuisine `K` et les tables (`T`).
+- `deplacer_serveur(grille, serveur_pos, direction)` : déplacer le serveur avec bornes.
+- `prendre_commande(...)` et `livrer_commande(...)` : logique de prise et livraison (points).
+- `generer_nouveaux_clients(...)` : faire apparaître des clients aléatoirement.
+- Boucle principale `jouer()` : orchestrer le jeu (affichage, entrée, génération clients, score).
 
-**Commandes :**
-- `z` : haut
-- `s` : bas
-- `q` : gauche  
-- `d` : droite
-- `p` : prendre commande/plat
-- `l` : livrer
+---
 
 ## Consignes importantes
-- Ne modifiez que les sections marquées `TODO`
-- N'importez pas de librairies supplémentaires
-- Testez votre code avec les exemples fournis
-- Respectez les formats de sortie demandés
+- **Modifiez uniquement** les sections marquées `# TODO`.
+- N'importe quel import supplémentaire est interdit (ne pas ajouter de librairies externes).
+- Testez votre code avec les exemples fournis dans chaque fichier (`if __name__ == '__main__':`).
+- Assurez-vous que vos fonctions ne lèvent pas d'exceptions non gérées pour des entrées similaires aux exemples fournis.
+- Rédigez des messages d'erreur clairs si vous gérez des cas invalides.
+
+---
 
 # Barème de correction
 
