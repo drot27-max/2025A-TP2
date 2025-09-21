@@ -1,7 +1,5 @@
 """
 TP2 - Exercice 2 : File d'attente des commandes
-Nom: 
-Matricule:
 """
 
 def calculer_priorite(commande):
