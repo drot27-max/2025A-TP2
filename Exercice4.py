@@ -1,7 +1,5 @@
 """
 TP2 - Exercice 4 : Système de réservation
-Nom: 
-Matricule:
 """
 
 # Fonction fournie - ne pas modifier
