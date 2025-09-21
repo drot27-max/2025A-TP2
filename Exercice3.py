@@ -1,7 +1,5 @@
 """
 TP2 - Exercice 3 : Optimisation de l'inventaire
-Nom: 
-Matricule:
 """
 
 def verifier_disponibilite(inventaire, recette):
