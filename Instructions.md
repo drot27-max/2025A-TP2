@@ -45,24 +45,17 @@
 
 3. **Compléter les exercices**
    * Modifier UNIQUEMENT les sections marquées `TODO`
-   * Tester votre code régulièrement avec les exemples fournis
-   * Commiter vos changements fréquemment :
-   ```bash
-   git add exercice1.py
-   git commit -m "Exercice 1 : fonction analyser_menu complétée"
-   git push
-   ```
 
 4. **Tester votre code**
    * Exécuter chaque exercice individuellement :
    ```bash
-   python exercice1.py
-   python exercice2.py
+   python Exercice1.py
+   python Exercice2.py
    # etc.
    ```
    * Exécuter les tests automatiques :
    ```bash
-   python test_tp2.py
+   python tp2_tests.py
    ```
 
 ### Conseils de débogage
