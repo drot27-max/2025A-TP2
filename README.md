@@ -156,8 +156,7 @@ Fonctions à compléter (`TODO`) :
 - `generer_rapport_satisfaction(categories, frequence_problemes)`  
   - Calculer la satisfaction moyenne.
   - Calculer la distribution en pourcentages (positifs / neutres / négatifs).
-  - Identifier les 3 principaux points d'amélioration (mots-clés négatifs les plus fréquents).
-  - Générer des recommandations basées sur ces problèmes.
+  - Identifier les 3 principaux points d'amélioration (3 mots-clés négatifs les plus fréquents).
 
 - `calculer_tendance(historique_scores)`  
   - Déterminer `'amélioration'`, `'stable'` ou `'dégradation'` selon l'évolution des scores moyens sur les périodes.
