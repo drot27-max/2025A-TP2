@@ -150,7 +150,7 @@ Fonctions à compléter (`TODO`) :
   - Stocker tuples `(texte_commentaire, score)` dans chaque catégorie.
 
 - `identifier_problemes(commentaires_negatifs, mots_cles_negatifs)`  
-  - Compter la fréquence d'apparition de mots-clés négatifs dans les commentaires négatifs.
+  - Compter la fréquence (nombre d'apparitions) de mots-clés négatifs dans les commentaires négatifs.
   - Retourner un dict trié par fréquence décroissante.
 
 - `generer_rapport_satisfaction(categories, frequence_problemes)`  
