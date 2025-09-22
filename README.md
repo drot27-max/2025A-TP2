@@ -61,7 +61,7 @@ Fonctions à compléter (`TODO`) :
 
 - `trier_commandes(liste_commandes)`  
   - Trier les commandes par priorité décroissante (commandes avec score le plus élevé en premier).
-  - Implémenter un algorithme de tri (ex. tri à bulles, insertion, etc.) sans utiliser `sorted()` si demandé/volontairement pédagogique.
+  - Implémenter un algorithme de tri (ex. tri à bulles, insertion, etc.) sans utiliser `sorted()`.
   - Veiller à ne pas modifier la liste originale si cela doit être explicitement évité (faire une copie si nécessaire).
 
 - `estimer_temps_total(liste_commandes_triee)`  
