@@ -97,7 +97,7 @@ def generer_rapport_satisfaction(categories, frequence_problemes):
     
     # TODO: Calculer la satisfaction moyenne
     # Calculer la distribution (% positifs, neutres, négatifs)
-    # Identifier les 3 principaux points d'amélioration
+    # Identifier les 3 principaux points d'amélioration (les 3 problèmes les plus fréquents)
     
     return rapport
 
