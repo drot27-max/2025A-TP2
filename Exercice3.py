@@ -54,6 +54,7 @@ def generer_alertes_stock(inventaire, seuil=10):
         dict: {ingredient: (quantité_actuelle, quantité_à_commander)}
     """
     alertes = {}
+    quantite_standard = 50  # Quantité standard à commander
     
     # TODO: Identifier les ingrédients avec stock < seuil
     # Suggérer une quantité à commander (ex: 50 unités - stock_actuel)
