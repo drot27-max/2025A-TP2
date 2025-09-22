@@ -138,10 +138,9 @@ Analyser les commentaires clients et produire un rapport.
 
 Fonctions à compléter (`TODO`) :
 - `analyser_commentaire(commentaire, mots_cles)`  
-  - Convertir le commentaire en minuscules.
   - Rechercher chaque mot-clé et additionner les scores.
   - Produire la liste `mots_trouves`.
-  - Borer le score final entre `0` et `10`.
+  - Borner le score final entre `0` et `10`.
 
 - `categoriser_commentaires(liste_commentaires, mots_cles)`  
   - Analyser chaque commentaire et le classer :
