@@ -57,7 +57,7 @@ def marquer_reservation(salle, position, taille_groupe):
     """
     nouvelle_salle = [rangee[:] for rangee in salle]  # Copie profonde
     
-    # TODO: Marquer la table à la position donnée comme réservée
+    # TODO: Marquer la table à la position donnée comme réservée (vérifier qu'elle est libre, on pourra utiliser la méthode startswith())
     # 'R2' pour table de 2 réservée, 'R4' pour table de 4
     
     return nouvelle_salle
