@@ -76,7 +76,7 @@ def calculer_commandes_possibles(inventaire, menu_recettes):
     commandes_possibles = {}
     
     # TODO: Pour chaque plat, calculer combien de portions peuvent être faites
-    # Le minimum est déterminé par l'ingrédient le plus limitant
+    # Le minimum est déterminé par l'ingrédient le plus limitant (on pourra initialiser une variable nb_portions = infini dans un premier temps)
     
     return commandes_possibles
 
