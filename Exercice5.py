@@ -174,19 +174,19 @@ if __name__ == '__main__':
     problemes = identifier_problemes(commentaires_negatifs, mots_negatifs)
     
     if problemes:
-        print("Problèmes récurrents:")
+        print("Problèmes récurrents (fréquence en %):")
         for probleme, freq in list(problemes.items())[:5]:
-            print(f"  - {probleme}: {freq} occurrences")
+            print(f"  - {probleme}: {freq:.1f}% des commentaires négatifs")
     
     # Test rapport
     print("\n=== Rapport de satisfaction ===")
     rapport = generer_rapport_satisfaction(categories, problemes)
     print(f"Satisfaction moyenne: {rapport['satisfaction_moyenne']:.1f}/10")
     print(f"Distribution: {rapport['distribution']}")
+    if rapport['points_forts']:
+        print(f"Points forts: {rapport['points_forts']}")
     if rapport['points_amelioration']:
         print(f"Points d'amélioration prioritaires: {rapport['points_amelioration']}")
-    if rapport['recommandations']:
-        print(f"Recommandations: {rapport['recommandations']}")
     
     # Test tendance
     print("\n=== Analyse de tendance ===")
