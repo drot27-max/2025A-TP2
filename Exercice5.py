@@ -17,7 +17,7 @@ def analyser_commentaire(commentaire, mots_cles):
     score_total = 5  # Score de base
     mots_trouves = []
     
-    # Convertir le commentaire en minuscules
+    # On convertit le commentaire en minuscules
     commentaire_lower = commentaire.lower()
     
     # On crée une version du commentaire avec espaces autour pour faciliter la recherche, donc on remplace la ponctuation par des espaces
