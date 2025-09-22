@@ -66,12 +66,12 @@ def identifier_problemes(commentaires_negatifs, mots_cles_negatifs):
         mots_cles_negatifs (dict): Mots-clés négatifs uniquement
     
     Returns:
-        dict: Fréquence de chaque problème identifié
+        dict: Fréquence de chaque problème identifié (nombre d'apparitions)
     """
     frequence_problemes = {}
     
     # TODO: Pour chaque commentaire négatif
-    # Compter la fréquence d'apparition de chaque mot-clé négatif
+    # Compter le nombre d'apparition de chaque mot-clé négatif
     # Retourner un dictionnaire trié par fréquence décroissante
     
     return frequence_problemes
@@ -83,7 +83,7 @@ def generer_rapport_satisfaction(categories, frequence_problemes):
     
     Args:
         categories (dict): Commentaires catégorisés
-        frequence_problemes (dict): Problèmes identifiés et leur fréquence
+        frequence_problemes (dict): Problèmes identifiés et leur fréquence (nombre d'apparitions)
     
     Returns:
         dict: Rapport avec statistiques et recommandations
@@ -93,13 +93,11 @@ def generer_rapport_satisfaction(categories, frequence_problemes):
         'distribution': {},
         'points_forts': [],
         'points_amelioration': [],
-        'recommandations': []
     }
     
     # TODO: Calculer la satisfaction moyenne
     # Calculer la distribution (% positifs, neutres, négatifs)
     # Identifier les 3 principaux points d'amélioration
-    # Générer des recommandations basées sur les problèmes
     
     return rapport
 
