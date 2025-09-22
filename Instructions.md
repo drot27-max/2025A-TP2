@@ -14,7 +14,7 @@
 
 2. **Structure des fichiers**
    ```
-   TP2-automne2024/
+   TP2/
    ├── README.md           # Énoncé du TP
    ├── instructions.md     # Ce fichier
    ├── exercice1.py       # Gestion du menu
