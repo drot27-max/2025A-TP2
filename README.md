@@ -128,7 +128,7 @@ Fonctions à compléter (`TODO`) :
   - Parcourir les tables libres (`'L2'` / `'L4'`) et retourner la meilleure `(position, taille_table)`.
 
 - `generer_rapport_occupation(salle)`  
-  - Compter tables libres, réservées et occupées par capacité (2 et 4).
+  - Compter tables libres, réservées et occupées (`'O2'` / `'O4'`) par capacité (2 et 4).
   - Calculer le taux d'occupation (`(réservées + occupées) / total_tables`).
 
 ---
