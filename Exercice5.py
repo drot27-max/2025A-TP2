@@ -2,7 +2,6 @@
 TP2 - Exercice 5 : Analyse de la satisfaction client
 """
 
-#Fonction fournie - ne pas modifier
 def analyser_commentaire(commentaire, mots_cles):
     """
     Analyse un commentaire client et calcule un score de satisfaction.
@@ -21,40 +20,18 @@ def analyser_commentaire(commentaire, mots_cles):
     # Convertir le commentaire en minuscules
     commentaire_lower = commentaire.lower()
     
-    # Créer une version du commentaire avec espaces autour pour faciliter la recherche
-    # On remplace la ponctuation par des espaces
+    # On crée une version du commentaire avec espaces autour pour faciliter la recherche, donc on remplace la ponctuation par des espaces
     commentaire_modifie = commentaire_lower
     for char in '.,!?;:()[]{}"\'-':
         commentaire_modifie = commentaire_modifie.replace(char, ' ')
     
-    # Diviser en mots pour une recherche plus précise
+    # On divise en mots pour une recherche plus précise
     mots_commentaire = commentaire_modifie.split()
     
-    # Rechercher chaque mot-clé dans le commentaire
-    for mot, score in mots_cles.items():
-        mot_lower = mot.lower()
-        
-        # Vérifier si le mot-clé est présent
-        # On vérifie soit le mot exact, soit le mot comme partie d'un autre mot
-        mot_trouve = False
-        
+    #TODO : Rechercher chaque mot-clé dans le commentaire
         # D'abord, vérifier la correspondance exacte dans la liste des mots
-        if mot_lower in mots_commentaire:
-            mot_trouve = True
-        else:
-            # Sinon, vérifier si le mot-clé est le début d'un mot du commentaire
-            # Cela permet de trouver "froid" dans "froide" ou "froids"
-            for mot_comm in mots_commentaire:
-                if mot_comm.startswith(mot_lower):
-                    mot_trouve = True
-                    break
-        
-        if mot_trouve:
-            score_total += score
-            mots_trouves.append(mot)
-    
-    # Le score final doit être entre 0 et 10
-    score_total = max(0, min(10, score_total))
+        # Sinon, vérifier si le mot-clé est le début d'un mot du commentaire (cela permet de trouver "froid" dans "froide" ou "froids")
+    # Borner le score final entre 0 et 10
     
     return score_total, mots_trouves
 
