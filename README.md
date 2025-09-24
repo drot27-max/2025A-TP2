@@ -196,6 +196,40 @@ Créer un mini-jeu console (optionnel) : fonctions `TODO` à compléter :
 - Rédigez des messages d'erreur clairs si vous gérez des cas invalides.
 
 ---
+## 🚨 Erreurs courantes à éviter
+
+### KeyError lors de l'accès aux dictionnaires
+**Problème** : `KeyError: 'temps_attente'` quand une clé n'existe pas
+
+**Solution** : 
+```python
+# Au lieu de :
+score = commande['temps_attente'] * 2  # ❌ Peut planter
+
+# Utilisez :
+score = commande.get('temps_attente', 0) * 2  # ✅ Sécurisé
+```
+
+### Division par zéro
+**Problème** : `ZeroDivisionError` dans les calculs de ratios
+
+**Solution** :
+```python
+# Vérifiez avant de diviser
+if temps > 0:
+    ratio = popularite / temps
+```
+
+### IndexError avec les listes
+**Problème** : Accès à un index inexistant
+
+**Solution** :
+```python
+# Vérifiez la taille de la liste
+if 0 <= index < len(liste):
+    valeur = liste[index]
+```
+---
 
 # Barème de correction
 
