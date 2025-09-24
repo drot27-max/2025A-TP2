@@ -204,10 +204,10 @@ Créer un mini-jeu console (optionnel) : fonctions `TODO` à compléter :
 **Solution** : 
 ```python
 # Au lieu de :
-score = commande['temps_attente'] * 2  # ❌ Peut planter
+score = commande['temps_attente'] * 2  
 
 # Utilisez :
-score = commande.get('temps_attente', 0) * 2  # ✅ Sécurisé
+score = commande.get('temps_attente', 0) * 2  
 ```
 
 ### Division par zéro
