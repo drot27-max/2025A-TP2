@@ -51,6 +51,13 @@ menu = {
 }
 ```
 
+**💡 Astuce** : Les dictionnaires peuvent avoir des champs manquants. Utilisez `dict.get('champ', valeur_defaut)` pour éviter les erreurs.
+
+**Exemple :**
+```python
+temps = commande.get('temps_attente', 0)  # 0 si le champ n'existe pas
+vip = commande.get('client_vip', False)   # False par défaut
+```
 ---
 
 ## Exercice 2: File d'attente des commandes (4 points)
