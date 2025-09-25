@@ -198,7 +198,7 @@ class TestExercice3(unittest.TestCase):
 
     def test_optimiser_achats(self):
         """Test optimisation des achats avec budget limité"""
-        previsions = {'Pizza': 10, 'PÃ¢tes': 5}
+        previsions = {'Pizza': 10, 'Pâtes': 5}
         budget = 50.0
     
         achats = ex3.optimiser_achats(
