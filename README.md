@@ -174,7 +174,6 @@ Fonctions à compléter (`TODO`) :
 
 - `calculer_tendance(historique_scores)`  
   - Déterminer `'amélioration'`, `'stable'` ou `'dégradation'` selon l'évolution des scores moyens sur les périodes.
-  - **En cas de tendance stable dans l'historique, privilégier la classification "stable" plutôt que "amélioration" ou "dégradation" pour de petites variations.**
 
 ---
 
