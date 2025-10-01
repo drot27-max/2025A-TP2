@@ -206,7 +206,7 @@ class TestExercice3(unittest.TestCase):
          )   
         
          # Vérifier que le budget n'est pas dépassé
-         cout_total = sum(
+        cout_total = sum(
              achats.get(ing, 0) * cout 
              for ing, cout in {'tomates': 0.5, 'fromage': 2.0, 'pâtes': 1.0, 'sauce': 1.5}.items()
         )
