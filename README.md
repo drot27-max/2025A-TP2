@@ -108,7 +108,7 @@ Fonctions à compléter (`TODO`) :
 - `optimiser_achats(inventaire, menu_recettes, previsions_ventes, budget)`  
   - Calculer les besoins totaux selon les prévisions (`previsions_ventes`).
   - Soustraire l'inventaire actuel pour obtenir les besoins d'achat.
-  - Optimiser selon le budget (prioriser ingrédients critiques, respecter le budget en coût unitaire donné).
+  - Optimiser selon le budget (respecter le budget en coût unitaire donné).
   - Retourner `{ingredient: quantite_a_acheter}`.
 
 ---
