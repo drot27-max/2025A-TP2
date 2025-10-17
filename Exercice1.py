@@ -19,11 +19,42 @@ def analyser_menu(menu):
     
     # TODO: Calculer le plat le plus rentable (ratio popularité/temps_preparation)
     # Attention: gérer le cas où temps_preparation pourrait être 0
+    ratio_de_base = 0 
+
+    for nom_plat, (prix, temps_preparation, popularite) in menu.items():
+        if temps_preparation ==0:
+            print('Erreur : temps de preparation nul!')
+            continue
+
+        ratio_calculé = popularite / temps_preparation
+        if ratio_calculé > ratio_de_base:
+            ratio_de_base = ratio_calculé
+            plat_plus_rentable = nom_plat
+
+    stats['plat_plus_rentable'] = plat_plus_rentable
+
     
     # TODO: Calculer le prix moyen du menu
     
+    prix_total = 0
+    nombre_de_plats = 0
+
+    for nom_plat, (prix, temps_preparation, popularite) in menu.items():
+        prix_total += prix
+        nombre_de_plats += 1 
+        prix_moyen = float(prix_total)/nombre_de_plats
+    stats['prix_moyen'] = prix_moyen
+
     # TODO: Calculer le temps de préparation moyen
     
+    temps_preparation_total = 0
+    
+    for nom_plat, (prix, temps_preparation, popularite) in menu.items():
+        temps_preparation_total += temps_preparation
+        temps_preparation_moyen = float(temps_preparation_total)/nombre_de_plats
+    
+    stats['temps_moyen'] = temps_preparation_moyen
+
     return stats
 
 
@@ -43,6 +74,23 @@ def filtrer_menu_par_categorie(menu, categories):
     # TODO: Organiser les plats par catégorie
     # Exemple: {'entrées': [...], 'plats': [...], 'desserts': [...]}
     
+    entrees = ''
+    plats = ''
+    desserts = ''
+
+    for nom_plat, categorie in categories.items():
+        if categorie == 'entrées':
+            entrees += str(nom_plat) + ', '
+        if categorie == 'plats':
+            plats += str(nom_plat) + ', '
+        if categorie == 'desserts':
+            desserts += str(nom_plat) + ', '
+        else :
+            continue
+    menu_filtre['entrées'] = entrees
+    menu_filtre['plats'] = plats
+    menu_filtre['desserts'] = desserts
+    
     return menu_filtre
 
 
@@ -61,7 +109,11 @@ def calculer_profit(menu, ventes_jour):
     
     # TODO: Calculer le profit total
     # profit = somme(prix_plat * nombre_ventes) pour chaque plat vendu
-    
+
+    for nom_plat, (prix, temps_preparation, popularite) in menu.items():
+        if nom_plat in ventes_jour:
+            profit += float(prix*ventes_jour[nom_plat])
+
     return profit
 
 
