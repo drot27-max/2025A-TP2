@@ -20,6 +20,12 @@ def calculer_priorite(commande):
     # TODO: Implémenter l'algorithme de priorité
     # Score = (temps_attente × 2) + (nombre_items × 1) + (client_vip × 10)
     
+    for i in commande.items():
+        temps_attente = commande['temps_attente']
+        nombre_items = commande['nombre_items']
+        vip = commande['client_vip']
+        score = temps_attente*2 + nombre_items*1 + vip*10
+    
     return score
 
 
@@ -37,6 +43,15 @@ def trier_commandes(liste_commandes):
     # TODO: Implémenter un algorithme de tri (suggestion: tri à bulles)
     # Les commandes avec le score le plus élevé doivent être en premier
     
+    def tri_bulles_commandes(liste_commandes):
+        n = len(liste_commandes)
+        for i in range(n):
+            for j in range (0, n-i-1):
+                if calculer_priorite(liste_commandes[j])<calculer_priorite(liste_commandes[j+1]):
+                    liste_commandes[j], liste_commandes[j+1] = liste_commandes[j+1], liste_commandes[j]
+    
+    tri_bulles_commandes(liste_commandes)
+
     return liste_commandes
 
 
@@ -55,6 +70,17 @@ def estimer_temps_total(liste_commandes_triee):
     # TODO: Calculer le temps total et moyen
     # Chaque item prend en moyenne 3 minutes à préparer
     
+    temps_total = 0
+    nombre_commandes = 0
+    temps_moyen = 0
+
+    for commande in liste_commandes_triee:
+        temps_total += int(commande['temps_attente'])
+        nombre_commandes += 1
+        temps_moyen = temps_total / int(nombre_commandes)
+
+    temps_stats['temps_total'] = temps_total
+    temps_stats['temps_moyen'] = temps_moyen
     return temps_stats
 
 
@@ -72,7 +98,15 @@ def identifier_commandes_urgentes(liste_commandes, seuil_attente=30):
     commandes_urgentes = []
     
     # TODO: Identifier les commandes avec temps_attente > seuil
-    
+
+    commandes_urgentes = 0
+
+    for commande in liste_commandes:
+        if commande['temps_attente'] > seuil_attente:
+            commandes_urgentes+= commande['numero']
+            
+    print('Commande numero '+ str(commandes_urgentes))
+
     return commandes_urgentes
 
 
