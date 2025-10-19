@@ -71,12 +71,14 @@ def estimer_temps_total(liste_commandes_triee):
     # Chaque item prend en moyenne 3 minutes à préparer
     
     temps_total = 0
+    nombre_items = 0 
     nombre_commandes = 0
     temps_moyen = 0
 
     for commande in liste_commandes_triee:
-        temps_total += int(commande['temps_attente'])
+        nombre_items += commande['nombre_items']
         nombre_commandes += 1
+        temps_total = nombre_items *3
         temps_moyen = temps_total / int(nombre_commandes)
 
     temps_stats['temps_total'] = temps_total
@@ -99,13 +101,9 @@ def identifier_commandes_urgentes(liste_commandes, seuil_attente=30):
     
     # TODO: Identifier les commandes avec temps_attente > seuil
 
-    commandes_urgentes = 0
-
     for commande in liste_commandes:
         if commande['temps_attente'] > seuil_attente:
-            commandes_urgentes+= commande['numero']
-            
-    print('Commande numero '+ str(commandes_urgentes))
+            commandes_urgentes.append(commande['numero'])
 
     return commandes_urgentes
 
