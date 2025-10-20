@@ -22,44 +22,31 @@ def afficher_salle(salle):
 def initialiser_salle(nb_rangees, nb_colonnes, positions_tables):
     """
     Initialise la salle du restaurant.
-    
-    Args:
-        nb_rangees (int): Nombre de rangées
-        nb_colonnes (int): Nombre de colonnes
-        positions_tables (list): Liste de tuples (rangee, colonne, taille_table)
-                                taille_table: 2 pour petite, 4 pour grande
-    
-    Returns:
-        list: Grille représentant la salle
-            'L2'/'L4' = table libre pour 2/4 personnes
-            'X' = espace non disponible
     """
-    salle = []
-    
-    # TODO: Créer une grille remplie de 'X' (espaces non disponibles)
-    # Puis placer les tables aux positions indiquées
-    # Format: 'L2' pour table libre de 2, 'L4' pour table libre de 4
-    
+    # Créer une grille remplie de 'X'
+    salle = [["X" for _ in range(nb_colonnes)] for _ in range(nb_rangees)]
+
+    # Placer les tables
+    for (r, c, taille) in positions_tables:
+        if 0 <= r < nb_rangees and 0 <= c < nb_colonnes:
+            salle[r][c] = f"L{taille}"
+
     return salle
 
 
 def marquer_reservation(salle, position, taille_groupe):
     """
     Marque une table comme réservée.
-    
-    Args:
-        salle (list): Grille de la salle
-        position (tuple): (rangee, colonne) de la table
-        taille_groupe (int): Nombre de personnes
-    
-    Returns:
-        list: Salle mise à jour avec 'R2' ou 'R4' pour table réservée
     """
-    nouvelle_salle = [rangee[:] for rangee in salle]  # Copie profonde
-    
-    # TODO: Marquer la table à la position donnée comme réservée (vérifier qu'elle est libre, on pourra utiliser la méthode startswith())
-    # 'R2' pour table de 2 réservée, 'R4' pour table de 4
-    
+    nouvelle_salle = [ligne[:] for ligne in salle]  # copie indépendante
+    r, c = position
+
+    if 0 <= r < len(salle) and 0 <= c < len(salle[0]):
+        table = salle[r][c]
+        if table.startswith("L"):  # libre
+            taille_table = int(table[1])
+            if taille_groupe <= taille_table:
+                nouvelle_salle[r][c] = f"R{taille_table}"
     return nouvelle_salle
 
 
@@ -67,58 +54,49 @@ def marquer_reservation(salle, position, taille_groupe):
 def calculer_score_table(position, taille_table, taille_groupe, nb_colonnes):
     """
     Calcule le score d'une table pour un groupe.
-    
-    Args:
-        position (tuple): (rangee, colonne) de la table
-        taille_table (int): Capacité de la table (2 ou 4)
-        taille_groupe (int): Nombre de personnes dans le groupe
-        nb_colonnes (int): Nombre total de colonnes (pour calculer proximité fenêtre)
-    
-    Returns:
-        int: Score de la table (plus élevé = meilleur)
-            -1 si la table ne convient pas
     """
-    score = 0
-    
-    # TODO: Calculer le score selon:
-    # - Si taille_table < taille_groupe: retourner -1 (ne convient pas)
-    # - Base: 100 points
-    # - Pénalité: -10 points par place vide (gaspillage)
-    # - Bonus fenêtre: +20 points si colonne == 0 ou colonne == nb_colonnes-1
-    # - Bonus position: +5 points si rangée < 3 (près de l'entrée)
-    
+    r, c = position
+
+    if taille_table < taille_groupe:
+        return -1  # table trop petite
+
+    score = 100
+    score -= 10 * (taille_table - taille_groupe)  # pénalité pour places vides
+
+    # Bonus fenêtre
+    if c == 0 or c == nb_colonnes - 1:
+        score += 20
+
+    # Bonus proximité entrée
+    if r < 3:
+        score += 5
+
     return score
 
 
 def trouver_meilleure_table(salle, taille_groupe):
     """
     Trouve la meilleure table disponible pour un groupe.
-    
-    Args:
-        salle (list): Grille de la salle
-        taille_groupe (int): Nombre de personnes
-    
-    Returns:
-        tuple: (position, taille_table) ou None si aucune table disponible
     """
     meilleure_table = None
     meilleur_score = -1
-    
-    # TODO: Parcourir toutes les tables libres ('L2' ou 'L4')
-    # Calculer leur score et garder la meilleure
-    
+    nb_colonnes = len(salle[0])
+
+    for i, rangee in enumerate(salle):
+        for j, table in enumerate(rangee):
+            if table.startswith("L"):
+                taille_table = int(table[1])
+                score = calculer_score_table((i, j), taille_table, taille_groupe, nb_colonnes)
+                if score > meilleur_score:
+                    meilleur_score = score
+                    meilleure_table = ((i, j), taille_table)
+
     return meilleure_table
 
 
 def generer_rapport_occupation(salle):
     """
     Génère un rapport sur l'occupation de la salle.
-    
-    Args:
-        salle (list): Grille de la salle
-    
-    Returns:
-        dict: Statistiques d'occupation
     """
     rapport = {
         'tables_libres_2': 0,
@@ -129,45 +107,59 @@ def generer_rapport_occupation(salle):
         'tables_occupees_4': 0,
         'taux_occupation': 0.0
     }
-    
-    # TODO: Compter les différents types de tables
-    # Calculer le taux d'occupation (réservées + occupées) / total
-    
+
+    total_tables = 0
+    occupees = 0
+
+    for rangee in salle:
+        for table in rangee:
+            if table.startswith("L"):
+                total_tables += 1
+                taille = int(table[1])
+                rapport[f"tables_libres_{taille}"] += 1
+            elif table.startswith("R"):
+                total_tables += 1
+                taille = int(table[1])
+                rapport[f"tables_reservees_{taille}"] += 1
+                occupees += 1
+            elif table.startswith("O"):  # pour "occupée" (optionnel)
+                total_tables += 1
+                taille = int(table[1])
+                rapport[f"tables_occupees_{taille}"] += 1
+                occupees += 1
+
+    if total_tables > 0:
+        rapport["taux_occupation"] = occupees / total_tables
+
     return rapport
 
 
+# ===========================
+# TESTS
+# ===========================
 if __name__ == '__main__':
-    # Configuration de la salle
     nb_rangees = 5
     nb_colonnes = 6
-    
-    # Positions des tables: (rangée, colonne, taille)
     positions_tables = [
-        (0, 0, 2), (0, 2, 2), (0, 5, 2),  # Rangée 0: tables de 2 près fenêtres
-        (1, 1, 4), (1, 4, 4),              # Rangée 1: tables de 4
-        (2, 0, 2), (2, 2, 4), (2, 5, 2),  # Rangée 2: mixte
-        (3, 1, 4), (3, 3, 4),              # Rangée 3: tables de 4
-        (4, 0, 2), (4, 2, 2), (4, 4, 2), (4, 5, 2)  # Rangée 4: tables de 2
+        (0, 0, 2), (0, 2, 2), (0, 5, 2),
+        (1, 1, 4), (1, 4, 4),
+        (2, 0, 2), (2, 2, 4), (2, 5, 2),
+        (3, 1, 4), (3, 3, 4),
+        (4, 0, 2), (4, 2, 2), (4, 4, 2), (4, 5, 2)
     ]
-    
-    # Partie 1: Initialisation
+
     print("=== PARTIE 1: Initialisation ===")
     salle = initialiser_salle(nb_rangees, nb_colonnes, positions_tables)
     afficher_salle(salle)
-    
-    # Test de réservation
-    print("\nRéservation d'une table pour 4 personnes en position (1, 1):")
+
+    print("\nRéservation d'une table pour 4 personnes en position (1,1):")
     salle = marquer_reservation(salle, (1, 1), 4)
     afficher_salle(salle)
-    
-    # Partie 2: Recherche de table
+
     print("\n=== PARTIE 2: Recherche de table ===")
-    
-    # Test de calcul de score
     score_test = calculer_score_table((0, 0), 2, 2, nb_colonnes)
     print(f"Score table (0,0) pour 2 personnes: {score_test}")
-    
-    # Test de recherche
+
     groupes_test = [2, 3, 4, 6]
     for taille in groupes_test:
         resultat = trouver_meilleure_table(salle, taille)
@@ -176,8 +168,7 @@ if __name__ == '__main__':
             print(f"Groupe de {taille}: Meilleure table en {pos} (capacité {taille_table})")
         else:
             print(f"Groupe de {taille}: Aucune table disponible")
-    
-    # Test du rapport
+
     print("\n=== Rapport d'occupation ===")
     rapport = generer_rapport_occupation(salle)
     for cle, valeur in rapport.items():
